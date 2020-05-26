@@ -1,4 +1,5 @@
-
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 var express    = require("express");
  var mysql      = require('mysql');
@@ -20,8 +21,6 @@ var express    = require("express");
 
  exports.register = async function(req,res){
     const password = req.body.password;
-    const bcrypt = require('bcrypt');
-    const saltRounds = 10;
     const encryptedPassword = await bcrypt.hash(password, saltRounds)
     var users={
        "email":req.body.email,
